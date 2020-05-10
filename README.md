@@ -6,12 +6,12 @@ These are the Check Skiils
 
 Java checks
 
-checkRootManagementApps
-checkPotentiallyDangerousApps
-checkRootCloakingApps
-checkTestKeys
-checkForDangerousProps
-checkForBusyBoxBinary
-checkForSuBinary
-checkSuExists
-checkForRWSystem
+- checkRootManagementApps
+- checkPotentiallyDangerousApps
+- checkRootCloakingApps
+- checkTestKeys
+- checkForDangerousProps
+- checkForBusyBoxBinary
+- checkForSuBinary
+- checkSuExists
+- checkForRWSystem
