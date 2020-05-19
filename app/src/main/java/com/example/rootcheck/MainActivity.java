@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
         button_1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logview.setText(checker.test_flag());
+                boolean result = checker.Check_Su_Exists();
+                logview.setText(String.valueOf(result));
             }
         });
 
