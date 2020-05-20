@@ -1,6 +1,7 @@
 package com.example.rootcheck;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -36,6 +37,29 @@ public class RootChecker {
             }
         }
         return false;
+    }
+
+    /**
+     *  check for this existence of "su" binary
+     * @return true if "su" found
+     */
+    public boolean Check_For_Su_Binary(){
+        String[] pathsArray = Const.getPaths();
+
+        String filename = "su";
+
+        boolean result = false;
+
+        for (String path : pathsArray) {
+            String completePath = path + filename;
+            File f = new File(path, filename);
+            boolean fileExists = f.exists();
+            if (fileExists) {
+                //binary detected!
+                result = true;
+            }
+        }
+        return result;
     }
 
 
