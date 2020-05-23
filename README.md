@@ -1,6 +1,6 @@
 # Root_Checker
 
-Implement a technique to check Rooting In Android
+Implement a technique to check Rooting In Android (RootBeear Clone Coding)
 
 These are the Check Skiils 
 
@@ -19,6 +19,8 @@ Java checks
 - checkForBusyBoxBinary
 
 - checkForSuBinary
+
+특정 경로 (/system, /system/bin, /data)에 Su 바이너리가 있는지 이름을 비교하여 확인
 
 - checkSuExists
 
