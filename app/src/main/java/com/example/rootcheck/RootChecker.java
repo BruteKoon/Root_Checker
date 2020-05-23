@@ -62,5 +62,27 @@ public class RootChecker {
         return result;
     }
 
+    /**
+     *  check for this existence of "busybox" binary
+     * @return true if "su" found
+     */
+    public boolean Check_For_BusyBox(){
+        String[] pathsArray = Const.getPaths();
+
+        String filename = "busybox";
+
+        boolean result = false;
+
+        for (String path : pathsArray) {
+            String completePath = path + filename;
+            File f = new File(path, filename);
+            boolean fileExists = f.exists();
+            if (fileExists) {
+                //binary detected!
+                result = true;
+            }
+        }
+        return result;
+    }
 
 }
