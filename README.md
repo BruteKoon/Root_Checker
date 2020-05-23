@@ -1,6 +1,6 @@
 # Root_Checker
 
-Implement a technique to check Rooting In Android
+Implement a technique to check Rooting In Android (RootBeear Clone Coding)
 
 These are the Check Skiils 
 
