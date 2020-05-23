@@ -20,6 +20,8 @@ Java checks
 
 - checkForSuBinary
 
+특정 경로 (/system, /system/bin, /data)에 Su 바이너리가 있는지 이름을 비교하여 확인
+
 - checkSuExists
 
 Runtime.getRuntime의 exec를 통해서 외부 명령어 실행
