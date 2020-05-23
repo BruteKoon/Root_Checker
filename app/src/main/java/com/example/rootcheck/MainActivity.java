@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         button_1.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean result = checker.Check_For_BusyBox();
+                boolean result = checker.checkForDangerousProps();
                 logview.setText(String.valueOf(result));
             }
         });

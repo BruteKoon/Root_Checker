@@ -3,7 +3,12 @@ package com.example.rootcheck;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 import static com.example.rootcheck.Const.BINARY_SU;
 
@@ -85,4 +90,49 @@ public class RootChecker {
         return result;
     }
 
+
+    private String[] propsReader() {
+        try {
+            InputStream inputstream = Runtime.getRuntime().exec("getprop").getInputStream();
+            if (inputstream == null) return null;
+            String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
+            return propVal.split("\n");
+        } catch (IOException | NoSuchElementException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Checks for several system properties for
+     * @return - true if dangerous props are found
+     */
+    public boolean checkForDangerousProps() {
+
+        final Map<String, String> dangerousProps = new HashMap<>();
+        dangerousProps.put("ro.debuggable", "1");
+        dangerousProps.put("ro.secure", "0");
+
+        boolean result = false;
+
+        String[] lines = propsReader();
+
+        if (lines == null){
+            // Could not read, assume false;
+            return false;
+        }
+
+        for (String line : lines) {
+            System.out.println("sukhoon " + line);
+            for (String key : dangerousProps.keySet()) {
+                if (line.contains(key)) {
+                    String badValue = dangerousProps.get(key);
+                    badValue = "[" + badValue + "]";
+                    if (line.contains(badValue)) {
+                        result = true;
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }
