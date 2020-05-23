@@ -16,7 +16,13 @@ Java checks
 
 - checkForDangerousProps
 
+Runtime.getRuntime의 exec를 통해서 외부 명령어(getprop)를 실행하여 해당 출력 값을 가져옴
+
+가져온 출력 값에서 위험 Property가 있는지 
+
 - checkForBusyBoxBinary
+
+특정 경로 (/system, /system/bin, /data)에 busybox 바이너리가 있는지 이름을 비교하여 확인
 
 - checkForSuBinary
 
