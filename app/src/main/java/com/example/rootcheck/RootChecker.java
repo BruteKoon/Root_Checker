@@ -91,6 +91,10 @@ public class RootChecker {
     }
 
 
+    /**
+     *  Exec "getprop" command
+     * @return propety list
+     */
     private String[] propsReader() {
         try {
             InputStream inputstream = Runtime.getRuntime().exec("getprop").getInputStream();
