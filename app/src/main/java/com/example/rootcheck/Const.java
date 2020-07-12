@@ -6,6 +6,21 @@ import java.util.Arrays;
 public class Const {
     public static final String BINARY_SU = "su";
 
+    public static final String[] knownRootAppsPackages = {
+            "com.noshufou.android.su",
+            "com.noshufou.android.su.elite",
+            "eu.chainfire.supersu",
+            "com.koushikdutta.superuser",
+            "com.thirdparty.superuser",
+            "com.yellowes.su",
+            "com.topjohnwu.magisk",
+            "com.kingroot.kinguser",
+            "com.kingo.root",
+            "com.smedialink.oneclickroot",
+            "com.zhiqupk.root.global",
+            "com.alephzain.framaroot"
+    };
+
     public static final String[] suPaths ={
             "/data/local/",
             "/data/local/bin/",

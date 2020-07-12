@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Make RootChecker Object
-        final RootChecker checker = new RootChecker();
+        final RootChecker checker = new RootChecker(mContext);
 
         final TextView logview = findViewById(R.id.LogView);
 

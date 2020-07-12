@@ -1,11 +1,17 @@
 package com.example.rootcheck;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -13,7 +19,15 @@ import java.util.Scanner;
 import static com.example.rootcheck.Const.BINARY_SU;
 
 public class RootChecker {
+
+    private final Context mContext;
+    private boolean loggingEnabled = true;
+
     boolean Root_Flag = false;
+
+    public RootChecker(Context mContext) {
+        this.mContext = mContext;
+    }
 
     String test_flag(){
         return "RootChecker Flag";
@@ -43,6 +57,48 @@ public class RootChecker {
         }
         return false;
     }
+
+    /**
+     * Using the PackageManager, check for a list of well known root apps. @link {Const.knownRootAppsPackages}
+     * @param additionalRootManagementApps - array of additional packagenames to search for
+     * @return true if one of the apps it's installed
+     */
+
+    public boolean Check_RootManagementApps(String[] additionalRootManagementApps) {
+
+        // Create a list of package names to iterate over from constants any others provided
+        ArrayList<String> packages = new ArrayList<>(Arrays.asList(Const.knownRootAppsPackages));
+        if (additionalRootManagementApps!=null && additionalRootManagementApps.length>0){
+            packages.addAll(Arrays.asList(additionalRootManagementApps));
+        }
+
+        return isAnyPackageFromListInstalled(packages);
+    }
+
+    /**
+     * Check if any package in the list is installed ( this package is root app )
+     * @param packages - list of packages to search for
+     * @return true if any of the packages are installed
+     */
+    private boolean isAnyPackageFromListInstalled(List<String> packages){
+        boolean result = false;
+
+        PackageManager pm = mContext.getPackageManager();
+
+        for (String packageName : packages) {
+            try {
+                // Root app detected
+                pm.getPackageInfo(packageName, 0);
+                result = true;
+            } catch (PackageManager.NameNotFoundException e) {
+                // Exception thrown, package is not installed into the system
+            }
+        }
+
+        return result;
+    }
+
+
 
     /**
      *  check for this existence of "su" binary
