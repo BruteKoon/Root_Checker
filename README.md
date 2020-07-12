@@ -12,6 +12,8 @@ pm(Package Manager)에서 특정 패키지(루트 관련 앱)이 설치 되어�
 
 - checkPotentiallyDangerousApps
 
+pm(Package Manager)에서 특정 패키지(루트 관련 앱)이 설치 되어있는지 확인 ( 동작 방식은 위와 같음 ) 
+
 - checkRootCloakingApps
 
 - checkTestKeys
