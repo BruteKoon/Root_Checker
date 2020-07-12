@@ -8,6 +8,8 @@ Java checks
 
 - checkRootManagementApps
 
+pm(Package Manager)에서 특정 패키지(루트 관련 앱)이 설치 되어있는지 확인
+
 - checkPotentiallyDangerousApps
 
 - checkRootCloakingApps
