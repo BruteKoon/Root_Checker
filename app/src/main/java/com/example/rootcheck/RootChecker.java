@@ -76,6 +76,24 @@ public class RootChecker {
     }
 
     /**
+     * Using the PackageManager, check for a list of well known apps that require root. @link {Const.knownRootAppsPackages}
+     * @param additionalDangerousApps - array of additional packagenames to search for
+     * @return true if one of the apps it's installed
+     */
+    public boolean Check_PotentiallyDangerousApps(String[] additionalDangerousApps) {
+
+        // Create a list of package names to iterate over from constants any others provided
+        ArrayList<String> packages = new ArrayList<>();
+        packages.addAll(Arrays.asList(Const.knownDangerousAppsPackages));
+        if (additionalDangerousApps!=null && additionalDangerousApps.length>0){
+            packages.addAll(Arrays.asList(additionalDangerousApps));
+        }
+
+        return isAnyPackageFromListInstalled(packages);
+    }
+
+
+    /**
      * Check if any package in the list is installed ( this package is root app )
      * @param packages - list of packages to search for
      * @return true if any of the packages are installed

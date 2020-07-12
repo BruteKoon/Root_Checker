@@ -21,6 +21,17 @@ public class Const {
             "com.alephzain.framaroot"
     };
 
+    public static final String[] knownDangerousAppsPackages = {
+            "com.koushikdutta.rommanager",
+            "com.koushikdutta.rommanager.license",
+            "com.dimonvideo.luckypatcher",
+            "com.chelpus.lackypatch",
+            "com.ramdroid.appquarantine",
+            "com.ramdroid.appquarantinepro",
+            "com.android.vending.billing.InAppBillingService.COIN",
+            "com.chelpus.luckypatcher"
+    };
+
     public static final String[] suPaths ={
             "/data/local/",
             "/data/local/bin/",
