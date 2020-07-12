@@ -32,6 +32,19 @@ public class Const {
             "com.chelpus.luckypatcher"
     };
 
+    public static final String[] pathsThatShouldNotBeWritable = {
+            "/system",
+            "/system/bin",
+            "/system/sbin",
+            "/system/xbin",
+            "/vendor/bin",
+            "/sbin",
+            "/etc",
+            //"/sys",
+            //"/proc",
+            //"/dev"
+    };
+
     public static final String[] suPaths ={
             "/data/local/",
             "/data/local/bin/",

@@ -213,4 +213,64 @@ public class RootChecker {
         }
         return result;
     }
+
+    /**
+     * When you're root you can change the permissions on common system directories, this method checks if any of these patha Const.pathsThatShouldNotBeWritable are writable.
+     * @return true if one of the dir is writable
+     */
+    public boolean checkForRWPaths() {
+
+        boolean result = false;
+
+        String[] lines = mountReader();
+
+        if (lines == null){
+            // Could not read, assume false;
+            return false;
+        }
+
+        for (String line : lines) {
+
+            // Split lines into parts
+            String[] args = line.split(" ");
+
+            if (args.length < 4){
+                // If we don't have enough options per line, skip this and log an error
+                // "Error formatting mount line
+                continue;
+            }
+
+            String mountPoint = args[1];
+            String mountOptions = args[3];
+
+            for(String pathToCheck: Const.pathsThatShouldNotBeWritable) {
+                if (mountPoint.equalsIgnoreCase(pathToCheck)) {
+
+                    // Split options out and compare against "rw" to avoid false positives
+                    for (String option : mountOptions.split(",")){
+
+                        if (option.equalsIgnoreCase("rw")){
+                            // path is mounted with rw permissions!
+                            result = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private String[] mountReader() {
+        try {
+            InputStream inputstream = Runtime.getRuntime().exec("mount").getInputStream();
+            if (inputstream == null) return null;
+            String propVal = new Scanner(inputstream).useDelimiter("\\A").next();
+            return propVal.split("\n");
+        } catch (IOException | NoSuchElementException e) {
+            return null;
+        }
+    }
+
 }
